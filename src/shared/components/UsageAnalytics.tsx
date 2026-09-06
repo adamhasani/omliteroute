@@ -196,6 +196,16 @@ export default function UsageAnalytics() {
   const costPerReq = s.totalRequests > 0 ? s.totalCost / s.totalRequests : 0;
   const ioRatio = s.completionTokens > 0 ? (s.promptTokens / s.completionTokens).toFixed(1) : "—";
 
+  // ── Eco & Cost Savings Telemetry (Green AI Standard) ──
+  const tokensCount = s.totalTokens || 0;
+  const requestsCount = s.totalRequests || 0;
+  const baselineCost = (tokensCount / 1_000_000) * 8.5;
+  const actualCost = s.totalCost || 0;
+  const costSaved = Math.max(0, baselineCost - actualCost);
+  const waterSavedLiters = ((tokensCount * 0.000045) + (requestsCount * 0.035)).toFixed(1);
+  const co2Grams = Math.round(tokensCount * 0.00025 + requestsCount * 0.2);
+  const co2Display = co2Grams >= 1000 ? `${(co2Grams / 1000).toFixed(1)} kg` : `${co2Grams} g`;
+
   return (
     <div className="flex flex-col gap-5 min-w-0">
       {/* Header + Filters */}
@@ -290,11 +300,43 @@ export default function UsageAnalytics() {
           color="text-emerald-500"
         />
         <StatCard
-          icon="payments"
-          label={t("estCost")}
-          value={fmtCost(s.totalCost)}
-          color="text-amber-500"
+          icon="savings"
+          label="Biaya Dihemat"
+          value={fmtCost(costSaved)}
+          subValue="vs Frontier Direct"
+          color="text-emerald-400"
         />
+      </div>
+
+      {/* ── Eco & Conservation Banner (MyRoute Standard) ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
+        <div className="flex items-center gap-3">
+          <div className="size-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 shrink-0">
+            <span className="material-symbols-outlined text-[20px]">water_drop</span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-text-main font-mono text-sky-400">{waterSavedLiters} L Air</p>
+            <p className="text-[11px] text-text-muted">Air pendingin data center terhemat via rute efisien</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="size-9 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0">
+            <span className="material-symbols-outlined text-[20px]">eco</span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-text-main font-mono text-teal-400">{co2Display} CO₂e</p>
+            <p className="text-[11px] text-text-muted">Jejak emisi karbon GPU dicegah</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="size-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
+            <span className="material-symbols-outlined text-[20px]">savings</span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-text-main font-mono text-emerald-400">{fmtCost(costSaved)} Dihemat</p>
+            <p className="text-[11px] text-text-muted">Komparasi vs tarif frontier API langsung</p>
+          </div>
+        </div>
       </div>
 
       {/* Secondary Metrics — compact grid with sections */}

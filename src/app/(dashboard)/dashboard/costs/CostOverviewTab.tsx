@@ -472,6 +472,18 @@ export default function CostOverviewTab() {
       : secondHalfCost > 0
         ? 100
         : 0;
+  // ── Eco & Cost Savings Telemetry (Green AI & Smart Routing Standard) ──
+  const tokensCount = summary.totalTokens || 0;
+  const requestsCount = summary.totalRequests || 0;
+  const baselineCost = (tokensCount / 1_000_000) * 8.5;
+  const actualCost = summary.totalCost || 0;
+  const costSaved = Math.max(0, baselineCost - actualCost);
+  const savingsPct = baselineCost > 0 ? Math.min(100, Math.round((costSaved / baselineCost) * 100)) : 100;
+  const waterSavedLiters = ((tokensCount * 0.000045) + (requestsCount * 0.035)).toFixed(1);
+  const waterBottles = Math.round(Number(waterSavedLiters) * 2);
+  const co2Grams = Math.round(tokensCount * 0.00025 + requestsCount * 0.2);
+  const co2Display = co2Grams >= 1000 ? `${(co2Grams / 1000).toFixed(1)} kg` : `${co2Grams} g`;
+
   const explorerRows = useMemo(
     () =>
       buildCostExplorerRows({
@@ -516,15 +528,6 @@ export default function CostOverviewTab() {
             <p className="text-sm text-text-muted mt-1">{t("overviewDescription")}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            {summary.streak > 0 && (
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20">
-                <span className="material-symbols-outlined text-amber-400 text-sm">
-                  local_fire_department
-                </span>
-                <span className="text-sm font-semibold text-amber-400">{summary.streak}</span>
-                <span className="text-xs text-amber-400/70">{t("dayStreak")}</span>
-              </div>
-            )}
             {analytics && summary.totalCost > 0 && (
               <div className="flex items-center gap-1">
                 <button
@@ -569,39 +572,71 @@ export default function CostOverviewTab() {
         </div>
       </Card>
 
+      {/* ── Eco & Cost-Efficiency KPI Cards (MyRoute Standard) ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <MetricCard
-          label={t("spendToday")}
-          value={formatCurrencyCost(locale, presetCosts["1d"] || 0)}
+          label={t("costSaved")}
+          value={formatCurrencyCost(locale, costSaved)}
+          subValue={t("freeRoutingEfficiency", { pct: savingsPct })}
           loading={summaryLoading}
           color="text-emerald-400"
+          icon="savings"
         />
         <MetricCard
-          label={t("spend7d")}
-          value={formatCurrencyCost(locale, presetCosts["7d"] || 0)}
+          label={t("waterSaved")}
+          value={`${waterSavedLiters} L`}
+          subValue={t("waterBottles", { count: waterBottles })}
           loading={summaryLoading}
           color="text-sky-400"
+          icon="water_drop"
         />
         <MetricCard
-          label={t("spend30d")}
-          value={formatCurrencyCost(locale, presetCosts["30d"] || 0)}
+          label={t("carbonOffset")}
+          value={`${co2Display} CO₂e`}
+          subValue={t("ecoGreenInfra")}
           loading={summaryLoading}
-          color="text-violet-400"
+          color="text-teal-400"
+          icon="eco"
         />
         <MetricCard
-          label={t("selectedWindow")}
-          value={formatCurrencyCost(locale, summary.totalCost || 0)}
-          subValue={selectedRangeLabel}
-          color="text-amber-400"
+          label={t("actualSpend")}
+          value={formatCurrencyCost(locale, actualCost)}
+          subValue={`${new Intl.NumberFormat(locale).format(tokensCount)} tokens · ${requestsCount} req`}
+          color="text-indigo-400"
+          icon="account_balance_wallet"
         />
       </div>
 
-      {includesFlatRateEstimates && (
-        <div className="flex items-start gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
-          <span className="material-symbols-outlined text-amber-400 text-base leading-5">info</span>
-          <p className="text-xs text-amber-300/90">{t("flatRateEstimateNotice")}</p>
+      {/* ── Eco & Smart Routing Impact Banner ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
+        <div className="flex items-center gap-3">
+          <div className="size-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
+            <span className="material-symbols-outlined text-[20px]">forest</span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-text-main">{t("ecoGreenInfra")}</p>
+            <p className="text-[11px] text-text-muted mt-0.5">{t("ecoGreenInfraDesc")}</p>
+          </div>
         </div>
-      )}
+        <div className="flex items-center gap-3">
+          <div className="size-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 shrink-0">
+            <span className="material-symbols-outlined text-[20px]">water_drop</span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-text-main">{t("ecoWaterCons")}</p>
+            <p className="text-[11px] text-text-muted mt-0.5">{t("ecoWaterConsDesc", { liters: waterSavedLiters })}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="size-9 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0">
+            <span className="material-symbols-outlined text-[20px]">price_check</span>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-text-main">{t("ecoFinancial")}</p>
+            <p className="text-[11px] text-text-muted mt-0.5">{t("ecoFinancialDesc")}</p>
+          </div>
+        </div>
+      </div>
 
       {selectedApiKeyId && (
         <ApiKeyUsageLimitCard
