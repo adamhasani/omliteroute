@@ -25,15 +25,13 @@ const execFileAsync = promisify(execFile);
 const log = createLogger("system/versionCheck");
 
 /** npm-binary-free latest-version source: the registry JSON API. */
-const NPM_REGISTRY_LATEST_URL = "https://registry.npmjs.org/omniroute/latest";
+const NPM_REGISTRY_LATEST_URL = "https://registry.npmjs.org/omliteroute/latest";
 
 /**
- * Second npm-binary-free source: the GitHub releases API. Works on networks that allow
- * GitHub (where `getNews()` already succeeds) but block the npm registry — the most likely
- * surviving cause of "#4100 still not fixed" after the registry fallback shipped in v3.8.28.
+ * Second npm-binary-free source: the GitHub releases API.
  */
 const GITHUB_RELEASES_LATEST_URL =
-  "https://api.github.com/repos/diegosouzapw/OmniRoute/releases/latest";
+  "https://api.github.com/repos/adamhasani/omliteroute/releases/latest";
 
 const LOOKUP_TIMEOUT_MS = 10_000;
 const MAX_VERSION_RESPONSE_BYTES = 16 * 1024;
@@ -72,7 +70,7 @@ export async function getLatestVersionFromNpmCli(
     // the function backing the dashboard's "Update Available" banner.
     const { stdout } = await execFn(
       "npm",
-      ["info", "omniroute", "version", "--json", "--prefer-online"],
+      ["info", "omliteroute", "version", "--json", "--prefer-online"],
       buildNpmExecOptions(process.platform, { timeoutMs: LOOKUP_TIMEOUT_MS })
     );
     const parsed = JSON.parse(String(stdout).trim());

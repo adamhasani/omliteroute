@@ -761,25 +761,25 @@ export default function Sidebar({
             onClick={() => setShowRestartModal(true)}
             title={t("restart")}
             className={cn(
-              "flex items-center justify-center gap-2 rounded-lg font-medium transition-all",
+              "flex items-center justify-center gap-1.5 rounded-lg font-medium transition-all",
               "text-amber-500 hover:bg-amber-500/10 border border-amber-500/20 hover:border-amber-500/40",
-              collapsed ? "p-2" : "flex-1 min-w-0 px-2 py-1.5 text-xs"
+              collapsed ? "p-2" : "flex-1 px-1.5 py-1.5 text-[11px]"
             )}
           >
-            <span className="material-symbols-outlined text-[16px]">restart_alt</span>
-            {!collapsed && <span className="truncate">{t("restart")}</span>}
+            <span className="material-symbols-outlined text-[15px]">restart_alt</span>
+            {!collapsed && <span>{t("restart")}</span>}
           </button>
           <button
             onClick={() => setShowShutdownModal(true)}
             title={t("shutdown")}
             className={cn(
-              "flex items-center justify-center gap-2 rounded-lg font-medium transition-all",
+              "flex items-center justify-center gap-1.5 rounded-lg font-medium transition-all",
               "text-red-500 hover:bg-red-500/10 border border-red-500/20 hover:border-red-500/40",
-              collapsed ? "p-2" : "flex-1 min-w-0 px-2 py-1.5 text-xs"
+              collapsed ? "p-2" : "flex-1 px-1.5 py-1.5 text-[11px]"
             )}
           >
-            <span className="material-symbols-outlined text-[16px]">power_settings_new</span>
-            {!collapsed && <span className="truncate">{t("shutdown")}</span>}
+            <span className="material-symbols-outlined text-[15px]">power_settings_new</span>
+            {!collapsed && <span>{t("shutdown")}</span>}
           </button>
         </div>
       </aside>

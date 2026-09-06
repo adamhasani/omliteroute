@@ -82,7 +82,7 @@ export default function ProviderTopology({
           const isHealthy = !isError && (p.status === "active" || (!isActive && !isLast));
 
           const cfg = getProviderConfig(providerId);
-          const label = resolveTopologyNodeLabel(p, cfg);
+          const label = resolveTopologyNodeLabel(p.name, cfg.name, providerId);
 
           let statusText = "IDLE";
           let statusBg = "bg-[#251d33] text-[#94a3b8]";
@@ -114,7 +114,7 @@ export default function ProviderTopology({
             >
               <div className="flex items-center justify-between gap-2 mb-2 w-full">
                 <div className="size-6 shrink-0 flex items-center justify-center">
-                  <ProviderIcon provider={providerId} />
+                  <ProviderIcon providerId={providerId} />
                 </div>
                 <span
                   className={`px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider ${statusBg}`}

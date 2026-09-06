@@ -851,3 +851,10 @@ html[dir="rtl"] :where(.material-symbols-outlined, .traffic-lights, .react-flow)
     display: none;
   }
 }
+
+/* OmliteRoute Clean View - Suppress Dev Overlays */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-dialog-overlay] {
+  display: none !important;
+}

@@ -9,9 +9,11 @@
  * otherwise the topology renders the UUID instead of the user's provider name.
  */
 export function resolveTopologyNodeLabel(
-  entryName: string | undefined | null,
-  configName: string | undefined | null,
+  entryName: unknown,
+  configName: unknown,
   providerId: string
 ): string {
-  return (entryName && entryName.trim()) || (configName && configName.trim()) || providerId;
+  const safeEntry = typeof entryName === "string" ? entryName.trim() : (entryName ? String(entryName).trim() : "");
+  const safeConfig = typeof configName === "string" ? configName.trim() : (configName ? String(configName).trim() : "");
+  return safeEntry || safeConfig || providerId;
 }

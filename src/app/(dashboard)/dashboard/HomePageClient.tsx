@@ -20,6 +20,7 @@ import { useIsElectron, useOpenExternal } from "@/shared/hooks/useElectron";
 import { HomeProviderTopologySection } from "./HomeProviderTopologySection";
 import { shouldShowProviderTopologyOnHome } from "./homeAppearance";
 import HomeRecentRequests from "../home/HomeRecentRequests";
+import { APP_CONFIG } from "@/shared/constants/appConfig";
 
 type UpdateStep = {
   step: string;

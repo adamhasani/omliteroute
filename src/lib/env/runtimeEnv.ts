@@ -3,7 +3,7 @@ import { z } from "zod";
 import { validateSecrets } from "@/shared/utils/secretsValidator";
 
 const NODE_ENV_VALUES = ["development", "production", "test"] as const;
-const BOOLEAN_ENV_VALUES = ["true", "false"] as const;
+const BOOLEAN_ENV_VALUES = ["true", "false", "1", "0"] as const;
 
 type RuntimeEnvIssue = {
   name: string;

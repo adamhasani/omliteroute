@@ -338,7 +338,8 @@ const ProviderIcon = memo(function ProviderIcon({
   // Own-property guards: a providerId such as "constructor" or "__proto__" otherwise
   // resolves through Object.prototype, yielding a truthy-looking value that corrupts
   // downstream lookups instead of falling through to the unknown-provider path (#11853).
-  const providerIdLower = providerId.toLowerCase();
+  const safeProviderId = typeof providerId === "string" ? providerId : (providerId ? String(providerId) : "generic");
+  const providerIdLower = safeProviderId.toLowerCase();
   const normalizedId = Object.hasOwn(PROVIDER_ICON_ALIASES, providerIdLower)
     ? PROVIDER_ICON_ALIASES[providerIdLower]
     : providerIdLower;
