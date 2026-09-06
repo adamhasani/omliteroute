@@ -69,7 +69,7 @@ function envFlag(name: string, fallback: boolean): boolean {
 
 const profileRoot =
   process.env.OMNIROUTE_VNC_PROFILE_DIR ||
-  `${process.env.HOME || "/tmp"}/.omniroute/browser-login-profiles`;
+  `${process.env.HOME || "/tmp"}/.omliteroute/browser-login-profiles`;
 
 export const VNC_CONFIG = {
   /**

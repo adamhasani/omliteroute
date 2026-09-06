@@ -6,12 +6,26 @@ if (!process.env.API_KEY_SECRET) {
 }
 
 function getApiKeySecret(): string {
-  const secret = process.env.API_KEY_SECRET;
+  let secret = process.env.API_KEY_SECRET;
   if (!secret || secret.trim() === "") {
-    throw new Error(
-      "API_KEY_SECRET is required for API key CRC operations. " +
-        "The startup validator (instrumentation-node.ts) should have set this automatically."
-    );
+    try {
+      // Lazy load from persistent DB store if not loaded by instrumentation
+      const { getPersistedSecret, persistSecret } = require("@/lib/db/secrets");
+      const persisted = getPersistedSecret("apiKeySecret");
+      if (persisted) {
+        process.env.API_KEY_SECRET = persisted;
+        return persisted;
+      }
+      const generated = crypto.randomBytes(32).toString("hex");
+      process.env.API_KEY_SECRET = generated;
+      persistSecret("apiKeySecret", generated);
+      return generated;
+    } catch {
+      // If DB not accessible yet, generate deterministic fallback or random
+      const fallback = crypto.randomBytes(32).toString("hex");
+      process.env.API_KEY_SECRET = fallback;
+      return fallback;
+    }
   }
   return secret;
 }
