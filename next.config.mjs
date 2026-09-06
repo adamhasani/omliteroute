@@ -378,7 +378,14 @@ const nextConfig = {
     "process",
   ],
   transpilePackages: ["@omniroute/open-sse", "@lobehub/icons", "fumadocs-ui", "fumadocs-core"],
-  allowedDevOrigins: ["localhost", "127.0.0.1", "192.168.0.250"],
+  allowedDevOrigins: [
+    "localhost",
+    "127.0.0.1",
+    "192.168.0.250",
+    "apa.zonalayar.my.id",
+    "*.zonalayar.my.id",
+    ...(process.env.ALLOWED_DEV_ORIGINS ? process.env.ALLOWED_DEV_ORIGINS.split(",") : []),
+  ],
   typescript: {
     // TODO: Re-enable after fixing all sub-component useTranslations scope issues
     ignoreBuildErrors: true,
