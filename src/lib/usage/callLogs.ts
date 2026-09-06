@@ -566,7 +566,7 @@ async function saveCallLogOperation(entry: any): Promise<void> {
     const db = getDbInstance();
     db.prepare(
       `
-      INSERT INTO call_logs (
+      INSERT OR REPLACE INTO call_logs (
         id, timestamp, method, path, status, model, requested_model, provider,
         account, connection_id, duration, tokens_in, tokens_out,
         tokens_cache_read, tokens_cache_creation, tokens_reasoning, tokens_compressed,
