@@ -1,6 +1,6 @@
 {
   "name": "omliteroute",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "OmliteRoute — Ultra-lightweight AI Gateway & Model Router. Low-RAM (~120MB), 356 providers, auto-fallback, and zero-bloat.",
   "type": "module",
   "bin": {
