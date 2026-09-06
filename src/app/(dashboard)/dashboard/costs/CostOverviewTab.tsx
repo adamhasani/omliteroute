@@ -607,37 +607,6 @@ export default function CostOverviewTab() {
         />
       </div>
 
-      {/* ── Eco & Smart Routing Impact Banner ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
-            <span className="material-symbols-outlined text-[20px]">forest</span>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-text-main">{t("ecoGreenInfra")}</p>
-            <p className="text-[11px] text-text-muted mt-0.5">{t("ecoGreenInfraDesc")}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 shrink-0">
-            <span className="material-symbols-outlined text-[20px]">water_drop</span>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-text-main">{t("ecoWaterCons")}</p>
-            <p className="text-[11px] text-text-muted mt-0.5">{t("ecoWaterConsDesc", { liters: waterSavedLiters })}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0">
-            <span className="material-symbols-outlined text-[20px]">price_check</span>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-text-main">{t("ecoFinancial")}</p>
-            <p className="text-[11px] text-text-muted mt-0.5">{t("ecoFinancialDesc")}</p>
-          </div>
-        </div>
-      </div>
-
       {selectedApiKeyId && (
         <ApiKeyUsageLimitCard
           payload={apiKeyUsageLimits}

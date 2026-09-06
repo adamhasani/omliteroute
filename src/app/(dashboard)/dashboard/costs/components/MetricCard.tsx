@@ -16,18 +16,18 @@ export function MetricCard({
   icon?: string;
 }) {
   return (
-    <Card className="p-4 flex flex-col justify-between border border-border/60 bg-[#161220]/70 hover:bg-[#1a1526]/90 transition-all rounded-xl shadow-sm">
+    <Card className="p-4 flex flex-col justify-between border border-[#271e36] bg-[#171424] hover:border-[#382b4d] transition-all rounded-xl shadow-none">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-[11px] uppercase tracking-wider text-text-muted font-semibold">{label}</p>
+        <p className="text-[11px] uppercase tracking-wider text-[#94a3b8] font-semibold">{label}</p>
         {icon && (
-          <span className={`material-symbols-outlined text-[18px] opacity-80 ${color}`}>
+          <span className={`material-symbols-outlined text-[17px] opacity-80 ${color}`}>
             {icon}
           </span>
         )}
       </div>
-      <div className="mt-2.5">
+      <div className="mt-2">
         <p className={`text-2xl font-bold tracking-tight font-mono ${color}`}>{loading ? "…" : value}</p>
-        {subValue ? <p className="text-xs text-text-muted/80 mt-1 font-sans truncate">{subValue}</p> : null}
+        {subValue ? <p className="text-[11px] text-[#94a3b8] mt-1 font-sans truncate">{subValue}</p> : null}
       </div>
     </Card>
   );

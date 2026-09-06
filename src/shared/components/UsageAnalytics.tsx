@@ -308,40 +308,18 @@ export default function UsageAnalytics() {
         />
       </div>
 
-      {/* ── Eco & Conservation Banner (MyRoute Standard) ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5">
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 shrink-0">
-            <span className="material-symbols-outlined text-[20px]">water_drop</span>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-text-main font-mono text-sky-400">{waterSavedLiters} L Air</p>
-            <p className="text-[11px] text-text-muted">Air pendingin data center terhemat via rute efisien</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0">
-            <span className="material-symbols-outlined text-[20px]">eco</span>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-text-main font-mono text-teal-400">{co2Display} CO₂e</p>
-            <p className="text-[11px] text-text-muted">Jejak emisi karbon GPU dicegah</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
-            <span className="material-symbols-outlined text-[20px]">savings</span>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-text-main font-mono text-emerald-400">{fmtCost(costSaved)} Dihemat</p>
-            <p className="text-[11px] text-text-muted">Komparasi vs tarif frontier API langsung</p>
-          </div>
-        </div>
-      </div>
-
       {/* Secondary Metrics — compact grid with sections */}
       <CompactStatGrid
         sections={[
+          {
+            title: "Efisiensi Hijau & Finansial",
+            items: [
+              { icon: "savings", label: "Biaya Dihemat", value: fmtCost(costSaved), color: "text-emerald-400" },
+              { icon: "water_drop", label: "Air Pendingin", value: `${waterSavedLiters} L`, color: "text-sky-400" },
+              { icon: "eco", label: "Karbon Dicegah", value: `${co2Display} CO₂e`, color: "text-teal-400" },
+              { icon: "bolt", label: "Efisiensi Rute", value: "100% Free", color: "text-amber-400" },
+            ],
+          },
           {
             title: t("infraTitle"),
             items: [
