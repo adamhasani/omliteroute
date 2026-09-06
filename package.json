@@ -1,14 +1,12 @@
 {
   "name": "omliteroute",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "OmliteRoute — Ultra-lightweight AI Gateway & Model Router. Low-RAM (~120MB), 356 providers, auto-fallback, and zero-bloat.",
   "type": "module",
   "bin": {
     "omliteroute": "bin/omliteroute.mjs",
     "omni-lite": "bin/omniroute-lite.mjs",
-    "omniroute": "bin/omniroute.mjs",
-    "omniroute-lite": "bin/omniroute-lite.mjs",
-    "omniroute-reset-password": "bin/reset-password.mjs"
+    "omlite-reset-password": "bin/reset-password.mjs"
   },
   "files": [
     "bin/",
