@@ -321,6 +321,19 @@ Set the OpenAI Base URL in your editor settings:
 
 ---
 
+## 🐛 Reporting Bugs & Contributing
+
+Found a bug, want a new provider, or have an idea to optimize OmliteRoute further?
+
+* **Open an Issue:** [github.com/adamhasani/omliteroute/issues](https://github.com/adamhasani/omliteroute/issues)
+* **Report a Bug:** [Submit a Bug Report](https://github.com/adamhasani/omliteroute/issues/new?template=bug_report.yml)
+* **Request a Feature:** [Submit a Feature Request](https://github.com/adamhasani/omliteroute/issues/new?template=feature_request.yml)
+* **Security Vulnerabilities:** If you discover a sensitive security vulnerability, please submit it privately via [GitHub Security Advisories](https://github.com/adamhasani/omliteroute/security/advisories/new).
+
+When reporting bugs, running `omliteroute doctor` and attaching the sanitized diagnostic output helps reproduce and patch issues promptly!
+
+---
+
 ## 📜 License & Acknowledgments
 
 * **Creator & Maintainer:** [Adam Hasani](https://github.com/adamhasani) ([@adamhasani](https://github.com/adamhasani))

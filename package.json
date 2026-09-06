@@ -91,7 +91,10 @@
     "type": "git",
     "url": "https://github.com/adamhasani/omliteroute"
   },
-  "homepage": "https://github.com/adamhasani/omliteroute",
+  "bugs": {
+    "url": "https://github.com/adamhasani/omliteroute/issues"
+  },
+  "homepage": "https://github.com/adamhasani/omliteroute#readme",
   "scripts": {
     "dev": "node --max-old-space-size=8192 scripts/dev/run-next.mjs dev",
     "prebuild:docs": "node scripts/docs/gen-openapi-module.mjs",

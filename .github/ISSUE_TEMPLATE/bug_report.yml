@@ -1,19 +1,20 @@
 name: Bug Report
-description: Report a bug or unexpected behavior in OmniRoute
+description: Report a bug or unexpected behavior in OmliteRoute
 title: "[BUG] "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to report a bug. Please fill out the sections below so we can reproduce and fix the issue.
+        Thanks for taking the time to report a bug! Please fill out the sections below so we can reproduce and patch it promptly.
+        **Note:** Please do **NOT** share sensitive credentials, raw SQLite databases, or API keys in your report.
 
   - type: input
     id: version
     attributes:
-      label: OmniRoute Version
-      description: "Run `omniroute --version` or check the left sidebar in the dashboard."
-      placeholder: "e.g. 3.7.9"
+      label: OmliteRoute Version
+      description: "Run `omliteroute --version` or check the sidebar badge in the dashboard."
+      placeholder: "e.g. 1.0.3"
     validations:
       required: true
 
@@ -22,10 +23,10 @@ body:
     attributes:
       label: Installation Method
       options:
-        - npm (global)
-        - Docker / Docker Compose
-        - Electron desktop app
-        - Built from source
+        - npm / npx (global)
+        - Standalone 1-line script (curl -fsSL https://raw.githubusercontent.com/adamhasani/omliteroute/main/install.sh | bash)
+        - Docker Alpine (docker-compose.lite.yml)
+        - Cloned from source
     validations:
       required: true
 
@@ -34,52 +35,27 @@ body:
     attributes:
       label: Operating System
       options:
-        - Windows
+        - Linux (Ubuntu/Debian/Arch/Alpine)
         - macOS
-        - Linux
+        - Windows (WSL2 / PowerShell)
     validations:
       required: true
-
-  - type: input
-    id: os-version
-    attributes:
-      label: OS Version
-      placeholder: "e.g. Windows 11 25H2, macOS 26.5, Ubuntu 26.04"
-    validations:
-      required: false
 
   - type: input
     id: node-version
     attributes:
       label: Node.js Version
-      description: "Run `node --version`. Skip if using Docker."
-      placeholder: "e.g. 24.15.0"
-    validations:
-      required: false
-
-  - type: input
-    id: provider
-    attributes:
-      label: Provider(s) Involved
-      description: "Which AI provider(s) does this affect?"
-      placeholder: "e.g. Antigravity, OpenRouter, Ollama, Qwen"
-    validations:
-      required: false
-
-  - type: input
-    id: model
-    attributes:
-      label: Model(s) Involved
-      placeholder: "e.g. claude-opus-4-7, gpt-5.5, gemini-3.1-pro"
+      description: "Run `node -v`."
+      placeholder: "e.g. v22.14.0"
     validations:
       required: false
 
   - type: input
     id: client-tool
     attributes:
-      label: Client Tool
-      description: "Which tool are you using OmniRoute with?"
-      placeholder: "e.g. Claude Code, Cursor, Roo Code, OpenClaw, Gemini CLI, cURL"
+      label: Client Tool / AI Agent
+      description: "Which tool or client are you connecting through OmliteRoute?"
+      placeholder: "e.g. Claude Code, Cursor, Roo Code, Gemini CLI, cURL, Hermes Agent"
     validations:
       required: false
 
@@ -87,7 +63,7 @@ body:
     id: description
     attributes:
       label: Description
-      description: "A clear description of what the bug is."
+      description: "Clear and concise explanation of what the bug is."
     validations:
       required: true
 
@@ -95,11 +71,11 @@ body:
     id: steps
     attributes:
       label: Steps to Reproduce
-      description: "Step-by-step instructions to reproduce the behavior."
+      description: "Step-by-step reproduction instructions."
       placeholder: |
-        1. Go to '...'
-        2. Click on '...'
-        3. See error
+        1. Start OmliteRoute via `omliteroute`
+        2. Navigate to '...' or call API '...'
+        3. Encounter error
     validations:
       required: true
 
@@ -112,32 +88,10 @@ body:
       required: true
 
   - type: textarea
-    id: actual
-    attributes:
-      label: Actual Behavior
-      description: "What actually happened?"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: test-impact
-    attributes:
-      label: Test Impact
-      description: "What automated test coverage should exist for this bug?"
-      options:
-        - Needs a new unit test
-        - Needs a new integration test
-        - Needs a new e2e test
-        - Existing automated test already fails
-        - Unsure
-    validations:
-      required: true
-
-  - type: textarea
     id: logs
     attributes:
-      label: Error Logs / Output
-      description: "Paste any relevant error messages, logs, or terminal output. This will be automatically formatted as code."
+      label: Error Logs or Output
+      description: "Paste relevant sanitized terminal logs or output (run `omliteroute doctor` if available)."
       render: shell
     validations:
       required: false
@@ -146,26 +100,6 @@ body:
     id: screenshots
     attributes:
       label: Screenshots
-      description: "If applicable, add screenshots to help explain the problem. Please also include the text of any error messages above — screenshots alone are not searchable."
-    validations:
-      required: false
-
-  - type: textarea
-    id: additional
-    attributes:
-      label: Additional Context
-      description: "Any other context about the problem (e.g. proxy config, number of accounts, network setup)."
-    validations:
-      required: false
-
-  - type: textarea
-    id: validation-plan
-    attributes:
-      label: Validation Plan
-      description: "Which commands or tests should prove this bug is fixed?"
-      placeholder: |
-        Example:
-        - node --import tsx --test tests/unit/my-file.test.ts
-        - npm run test:coverage
+      description: "If applicable, drag and drop visual evidence here."
     validations:
       required: false
