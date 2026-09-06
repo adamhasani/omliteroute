@@ -98,16 +98,16 @@ Standard AI proxy routers frequently consume **1.5 to 3.0 GB of RAM** and drain 
       <img src="./docs/screenshots/omliteroute-providers.png" alt="OmliteRoute Providers Management" width="100%"/>
     </td>
     <td width="50%" align="center">
-      <b>🎯 Model Combos & Smart Routing</b><br/>
-      <sub>Multi-model fallback chains and auto-routing pipelines</sub><br/><br/>
-      <img src="./docs/screenshots/omliteroute-combos.png" alt="OmliteRoute Model Combos" width="100%"/>
+      <b>🌱 Eco & Cost Savings Telemetry</b><br/>
+      <sub>Real-time data center cooling water saved, carbon offset, and money saved vs frontier APIs</sub><br/><br/>
+      <img src="./docs/screenshots/omliteroute-costs-eco.png" alt="OmliteRoute Eco and Cost Telemetry" width="100%"/>
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>⚙️ Lean Storage & Maintenance Settings</b><br/>
-      <sub>Clamped SQLite cache, 500-record rolling call log, and vacuum tools</sub><br/><br/>
-      <img src="./docs/screenshots/omliteroute-settings.png" alt="OmliteRoute Settings" width="100%"/>
+      <b>🎯 Model Combos & Smart Routing</b><br/>
+      <sub>Multi-model fallback chains and auto-routing pipelines</sub><br/><br/>
+      <img src="./docs/screenshots/omliteroute-combos.png" alt="OmliteRoute Model Combos" width="100%"/>
     </td>
     <td width="50%" align="center">
       <b>📱 Mobile View (Telegram WebApp / TWA)</b><br/>
@@ -116,6 +116,41 @@ Standard AI proxy routers frequently consume **1.5 to 3.0 GB of RAM** and drain 
     </td>
   </tr>
 </table>
+
+---
+
+## 🌱 Eco & Real-Time Financial Savings (MyRoute Standard)
+
+OmliteRoute v1.0.1 integrates **real-time environmental and financial telemetry** directly into the Costs and Analytics dashboard, grounded in empirical data center cooling benchmarks:
+
+* **💰 Biaya yang Dihemat (Cost Saved):** Real-time financial ROI calculated against blended frontier model direct API rates ($8.50 / 1M tokens baseline). Track exactly how many dollars your free provider accounts and combos save.
+* **💧 Liter Air Terhemat (Cooling Water Saved):** AI data centers consume vast volumes of clean water for cooling high-density GPU clusters (~0.5L evaporated per 20–50 frontier queries). OmliteRoute tracks the literal liters of cooling water conserved via smart routing and caching (e.g. `14,700+ Liters = 29,000+ water bottles`).
+* **🌿 Jejak Karbon Dicegah (Carbon Offset):** Quantifies CO₂e emissions prevented by routing through idle capacity, local inference, and cached context windows.
+* **⚡ 100% Free Routing Efficiency:** Instant visibility into free vs paid token ratios so you always know your effective cost-per-token is optimized.
+
+---
+
+## 🧭 Complete 3-Tier Developer Navigation
+
+Unlike bloated gateways that bury critical tools behind nested accordion folders, OmliteRoute organizes all developer utilities into **3 clear, high-density tiers**:
+
+1. **Homepage:**
+   * **Endpoint & Key (`/dashboard/endpoint`):** Base URL endpoints, tunnels, and root API access keys.
+   * **Overview (`/home`):** Executive telemetry strip (Active Providers, Model Catalog, RAM Footprint).
+   * **Playground (`/dashboard/playground`):** Test model outputs, streaming speeds, and multi-provider responses.
+2. **Gateway:**
+   * **Providers (`/dashboard/providers`):** Connect accounts, OAuth tokens, and API credentials across 356+ platforms.
+   * **Combo & Vision Adapter (`/dashboard/combos`):** Configure multi-model fallback chains, load-balancing, and multimodal bridges.
+   * **Token Saver (`/dashboard/context/settings`):** RTK & Caveman prompt compression rules.
+   * **CLI Tools & Orchestration:** Direct command runners, Conductor agents, and task councils.
+   * **Skills & Memory:** Persistent agentic memory and tool definitions.
+   * **MCP Server (`/dashboard/mcp`):** Model Context Protocol integrations (stdio, SSE, HTTP).
+3. **Observe & Tools:**
+   * **Usage & Costs (`/dashboard/costs`):** Real-time spend, cost savings, and eco-metrics breakdown.
+   * **Quota Tracker (`/dashboard/quota`):** Monitor daily limits, tier resets, and account usage.
+   * **Health & Resilience (`/dashboard/health`, `/dashboard/resilience/connections`):** Live circuit breaker and latency monitoring.
+   * **Console & Audit Logs (`/dashboard/logs`):** High-speed rolling call logs and event inspectors.
+   * **Format Translator (`/dashboard/translator`):** Real-time OpenAI ↔ Claude ↔ Gemini wire-format conversion.
 
 ---
 
