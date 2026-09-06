@@ -382,8 +382,6 @@ const nextConfig = {
     "localhost",
     "127.0.0.1",
     "192.168.0.250",
-    "apa.zonalayar.my.id",
-    "*.zonalayar.my.id",
     ...(process.env.ALLOWED_DEV_ORIGINS ? process.env.ALLOWED_DEV_ORIGINS.split(",") : []),
   ],
   typescript: {

@@ -149,9 +149,12 @@ icon.iconset/
 vscode-extension/
 
 # SQLite residual files
+*.sqlite
 *.sqlite-shm
 *.sqlite-wal
 *.sqlite-journal
+*.db
+storage.sqlite
 
 # IDEA
 .idea/
