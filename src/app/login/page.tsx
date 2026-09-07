@@ -62,7 +62,7 @@ export default function LoginPage() {
     checkAuth();
   }, [router]);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -72,11 +72,13 @@ export default function LoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
+        credentials: "same-origin",
       });
 
       if (res.ok) {
         sessionStorage.setItem("omniroute_login_time", String(Date.now()));
-        window.location.href = "/dashboard";
+        router.push("/dashboard");
+        router.refresh();
       } else {
         const data = await res.json();
         // (#521) If no password is set, redirect to onboarding instead of showing an error

@@ -1,9 +1,7 @@
-import pkg from "../../../package.json" with { type: "json" };
-
 export const APP_CONFIG = {
   name: "OmliteRoute",
   description: "Ultra-Lightweight Multi-Provider AI Gateway",
-  version: pkg.version,
+  version: "1.0.13",
 };
 
 export const THEME_CONFIG = {
