@@ -13,6 +13,9 @@
 
 process.env.OMNIROUTE_LITE = "1";
 process.env.OMNIROUTE_DISABLE_BACKGROUND_SERVICES = "true";
+if (!process.env.PORT) {
+  process.env.PORT = "20129";
+}
 
 if (!process.env.OMNIROUTE_MEMORY_MB) {
   process.env.OMNIROUTE_MEMORY_MB = "512";
